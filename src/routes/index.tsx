@@ -44,7 +44,7 @@ function Index() {
         <nav className="hidden items-center gap-7 text-sm font-medium lg:flex" aria-label="Main navigation">
           <a href="#stories" className="hover:text-primary">Stories</a><a href="#categories" className="hover:text-primary">Categories</a><a href="#journey" className="hover:text-primary">How it works</a><a href="#parents" className="hover:text-primary">For parents</a>
         </nav>
-        <div className="hidden items-center gap-2 lg:flex"><Button variant="ghost" size="icon" aria-label="Search stories" onClick={() => document.getElementById("story-search")?.focus()}><Search size={19}/></Button><Button size="sm" onClick={() => play(stories[0])}><Play size={16} fill="currentColor"/>Listen now</Button></div>
+        <div className="hidden items-center gap-2 lg:flex"><Button variant="ghost" size="icon" aria-label="Search stories" onClick={() => document.getElementById("story-search")?.focus()}><Search size={19}/></Button><Button size="sm" onClick={() => { const firstStory = stories[0]; if (firstStory) play(firstStory); }}><Play size={16} fill="currentColor"/>Listen now</Button></div>
         <Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">{menuOpen ? <X/> : <Menu/>}</Button>
       </div>
       {menuOpen && <nav className="grid gap-1 border-t border-border bg-background p-4 lg:hidden"><a href="#stories" className="rounded-md px-3 py-3" onClick={() => setMenuOpen(false)}>Stories</a><a href="#categories" className="rounded-md px-3 py-3" onClick={() => setMenuOpen(false)}>Categories</a><a href="#journey" className="rounded-md px-3 py-3" onClick={() => setMenuOpen(false)}>How it works</a><a href="#parents" className="rounded-md px-3 py-3" onClick={() => setMenuOpen(false)}>For parents</a></nav>}
@@ -59,7 +59,7 @@ function Index() {
             <p className="mb-5 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em]"><Sparkles size={17}/> Stories from every corner of India</p>
             <h1 className="max-w-xl text-5xl font-bold leading-[1.08] md:text-7xl">Every Story<br/>Has a Home.</h1>
             <p className="mt-6 max-w-xl text-base leading-8 text-primary-foreground/90 md:text-lg">Katha Kutira brings the stories, wisdom and imagination of India to life through a magical, audio-first experience for children.</p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row"><Button asChild variant="light"><a href="#stories">Explore stories</a></Button><Button variant="secondary" onClick={() => play(stories[0])}><Play size={17} fill="currentColor"/>Listen to a story</Button></div>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row"><Button asChild variant="light"><a href="#stories">Explore stories</a></Button><Button variant="secondary" onClick={() => { const firstStory = stories[0]; if (firstStory) play(firstStory); }}><Play size={17} fill="currentColor"/>Listen to a story</Button></div>
           </div>
         </div>
       </section>
