@@ -2,6 +2,9 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { ChevronDown, Heart, Menu, Pause, Play, Search, Sparkles, Volume2, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import heroImage from "@/assets/katha-hero.jpg";
+import appHomeDesktop from "@/assets/app-home-desktop.jpg";
+import appHomeMobile from "@/assets/app-home-mobile.jpg";
+import appStoryDetail from "@/assets/app-story-detail.jpg";
 import { Button } from "@/components/Button";
 import { categories, stories, type Story } from "@/lib/stories";
 
