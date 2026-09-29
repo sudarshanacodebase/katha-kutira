@@ -9,3 +9,5 @@
 - [ ] Add a short written story to each catalogue item
 - [ ] Connect text-to-speech narration to every story player
 - [ ] Verify narration and story reading views
+
+- [ ] Create downloadable desktop and mobile app screenshots
