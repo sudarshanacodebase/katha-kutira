@@ -10,4 +10,4 @@
 - [ ] Connect text-to-speech narration to every story player
 - [ ] Verify narration and story reading views
 
-- [ ] Create downloadable desktop and mobile app screenshots
+- [x] Create downloadable desktop and mobile app screenshots
