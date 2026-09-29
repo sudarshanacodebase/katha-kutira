@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep story catalogue content in `src/lib/stories.ts` as reusable structured data so listing and detail views remain consistent.
+- Every story catalogue entry includes its narration text alongside metadata so text and audio always use the same canonical source.
