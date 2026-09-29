@@ -6,7 +6,8 @@ import appHomeDesktop from "@/assets/app-home-desktop.jpg";
 import appHomeMobile from "@/assets/app-home-mobile.jpg";
 import appStoryDetail from "@/assets/app-story-detail.jpg";
 import { Button } from "@/components/Button";
-import { categories, stories, type Story } from "@/lib/stories";
+import { categories, stories } from "@/lib/stories";
+import { useStoryNarration } from "@/hooks/use-story-narration";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
@@ -29,15 +30,13 @@ function Index() {
   const [query, setQuery] = useState("");
   const [language, setLanguage] = useState("All languages");
   const [age, setAge] = useState("All ages");
-  const [playing, setPlaying] = useState<Story | null>(null);
-  const [paused, setPaused] = useState(false);
+  const { activeStory, isPaused, play, togglePause, stop } = useStoryNarration();
   const [favorites, setFavorites] = useState<string[]>([]);
   const filtered = useMemo(() => stories.filter((story) =>
     (!query || `${story.title} ${story.category} ${story.themes.join(" ")}`.toLowerCase().includes(query.toLowerCase())) &&
     (language === "All languages" || story.language === language) &&
     (age === "All ages" || story.ageGroup.startsWith(age))), [age, language, query]);
 
-  const play = (story: Story) => { setPlaying(story); setPaused(false); };
   const toggleFavorite = (slug: string) => setFavorites((items) => items.includes(slug) ? items.filter((item) => item !== slug) : [...items, slug]);
 
   return <div className="min-h-screen overflow-x-hidden bg-background pb-24 text-foreground">
@@ -63,6 +62,17 @@ function Index() {
             <h1 className="max-w-xl text-5xl font-bold leading-[1.08] md:text-7xl">Every Story<br/>Has a Home.</h1>
             <p className="mt-6 max-w-xl text-base leading-8 text-primary-foreground/90 md:text-lg">Katha Kutira brings the stories, wisdom and imagination of India to life through a magical, audio-first experience for children.</p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row"><Button asChild variant="light"><a href="#stories">Explore stories</a></Button><Button variant="secondary" onClick={() => { const firstStory = stories[0]; if (firstStory) play(firstStory); }}><Play size={17} fill="currentColor"/>Listen to a story</Button></div>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/70">Get the app</span>
+              <a href="#" aria-label="Download Katha Kutira on Google Play" className="flex items-center gap-2.5 rounded-md border border-primary-foreground/25 bg-primary-foreground/10 px-4 py-2 transition hover:bg-primary-foreground/20">
+                <svg viewBox="0 0 512 512" className="h-6 w-6 text-primary-foreground" fill="currentColor" aria-hidden><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
+                <span className="text-left leading-tight"><span className="block text-[10px] uppercase tracking-wide text-primary-foreground/70">Get it on</span><span className="block text-sm font-semibold text-primary-foreground">Google Play</span></span>
+              </a>
+              <a href="#" aria-label="Download Katha Kutira on the App Store" className="flex items-center gap-2.5 rounded-md border border-primary-foreground/25 bg-primary-foreground/10 px-4 py-2 transition hover:bg-primary-foreground/20">
+                <svg viewBox="0 0 384 512" className="h-6 w-6 text-primary-foreground" fill="currentColor" aria-hidden><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+                <span className="text-left leading-tight"><span className="block text-[10px] uppercase tracking-wide text-primary-foreground/70">Download on the</span><span className="block text-sm font-semibold text-primary-foreground">App Store</span></span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -97,6 +107,6 @@ function Index() {
 
     <footer className="border-t border-border bg-popover"><div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-[1.5fr_repeat(3,1fr)] lg:px-8"><div><Logo/><p className="mt-4 max-w-xs text-sm leading-6 text-muted-foreground">A home for Indian stories, built for children and designed around the magic of listening.</p></div>{[["Discover","Stories","Categories","Languages"],["Katha Kutira","About","Storytellers","Contact"],["For families","Parents","Privacy","Terms"]].map(([heading,...links]) => <div key={heading}><h3 className="text-sm font-bold">{heading}</h3><ul className="mt-4 space-y-3 text-sm text-muted-foreground">{links.map((link) => <li key={link}><a href="#stories" className="hover:text-primary">{link}</a></li>)}</ul></div>)}</div><div className="border-t border-border px-5 py-5 text-center text-xs text-muted-foreground">© 2026 Katha Kutira. Made with wonder in India.</div></footer>
 
-    {playing && <div className="fixed inset-x-3 bottom-3 z-50 mx-auto grid max-w-3xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-lg border border-primary-foreground/15 bg-primary p-3 text-primary-foreground shadow-2xl"><img src={playing.artwork} alt="" className="h-12 w-12 shrink-0 rounded-md object-cover"/><div className="min-w-0"><p className="truncate text-sm font-semibold">{playing.title}</p><p className="truncate text-xs text-primary-foreground/70">{playing.narrator} · {playing.duration}</p><div className="mt-2 h-1 overflow-hidden rounded-full bg-primary-foreground/20"><div className="h-full w-1/3 bg-secondary"/></div></div><div className="flex items-center gap-1"><Button variant="light" size="icon" aria-label={paused ? "Resume story" : "Pause story"} onClick={() => setPaused(!paused)}>{paused ? <Play size={18} fill="currentColor"/> : <Pause size={18} fill="currentColor"/>}</Button><Button variant="ghost" size="icon" className="text-primary-foreground hover:bg-primary-foreground/10" aria-label="Close player" onClick={() => setPlaying(null)}><X size={18}/></Button></div></div>}
+    {activeStory && <div className="fixed inset-x-3 bottom-3 z-50 mx-auto grid max-w-3xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-lg border border-primary-foreground/15 bg-primary p-3 text-primary-foreground shadow-2xl"><img src={activeStory.artwork} alt="" className="h-12 w-12 shrink-0 rounded-md object-cover"/><div className="min-w-0"><p className="truncate text-sm font-semibold">{activeStory.title}</p><p className="truncate text-xs text-primary-foreground/70">Narrating now · {activeStory.language}</p><div className="mt-2 h-1 overflow-hidden rounded-full bg-primary-foreground/20"><div className={`h-full w-1/3 bg-secondary ${isPaused ? "opacity-40" : "animate-pulse"}`}/></div></div><div className="flex items-center gap-1"><Button variant="light" size="icon" aria-label={isPaused ? "Resume story" : "Pause story"} onClick={togglePause}>{isPaused ? <Play size={18} fill="currentColor"/> : <Pause size={18} fill="currentColor"/>}</Button><Button variant="ghost" size="icon" className="text-primary-foreground hover:bg-primary-foreground/10" aria-label="Close player" onClick={stop}><X size={18}/></Button></div></div>}
   </div>;
 }

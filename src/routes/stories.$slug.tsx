@@ -1,7 +1,8 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
-import { ArrowLeft, Heart, Play } from "lucide-react";
+import { ArrowLeft, Heart, Pause, Play, Square } from "lucide-react";
 import { Button } from "@/components/Button";
 import { stories } from "@/lib/stories";
+import { useStoryNarration } from "@/hooks/use-story-narration";
 
 export const Route = createFileRoute("/stories/$slug")({
   loader: ({ params }) => {
@@ -22,6 +23,8 @@ export const Route = createFileRoute("/stories/$slug")({
 
 function StoryPage() {
   const story = Route.useLoaderData();
+  const { activeStory, isPaused, play, togglePause, stop } = useStoryNarration();
+  const isActive = activeStory?.slug === story.slug;
   const related = stories.filter((item) => item.slug !== story.slug).slice(0, 2);
   return <main className="min-h-screen bg-background pb-20 text-foreground">
     <div className="mx-auto max-w-7xl px-5 py-8 lg:px-8"><Button asChild variant="ghost" size="sm"><Link to="/"><ArrowLeft size={17}/>Back to stories</Link></Button></div>
