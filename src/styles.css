@@ -19,6 +19,7 @@
  */
 
 @theme inline {
+  --font-sans: "Poppins", "Noto Sans Devanagari", sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -59,29 +60,34 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-sun: var(--sun);
+  --color-leaf: var(--leaf);
+  --shadow-soft: 0 14px 35px -18px color-mix(in oklab, var(--primary) 35%, transparent);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --radius: 0.5rem;
+  --background: oklch(0.94 0.018 205);
+  --foreground: oklch(0.28 0.045 41);
+  --card: oklch(0.58 0.14 43);
+  --card-foreground: oklch(0.98 0.01 65);
+  --popover: oklch(0.985 0.012 70);
+  --popover-foreground: oklch(0.28 0.045 41);
+  --primary: oklch(0.58 0.14 43);
+  --primary-foreground: oklch(0.99 0.008 70);
+  --secondary: oklch(0.83 0.07 46);
+  --secondary-foreground: oklch(0.31 0.06 39);
+  --muted: oklch(0.9 0.026 204);
+  --muted-foreground: oklch(0.46 0.035 48);
+  --accent: oklch(0.73 0.16 47);
+  --accent-foreground: oklch(0.22 0.035 40);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.8 0.045 52 / 55%);
+  --input: oklch(0.985 0.012 70);
+  --ring: oklch(0.58 0.14 43);
+  --sun: oklch(0.79 0.15 74);
+  --leaf: oklch(0.43 0.08 145);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +146,23 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    letter-spacing: 0;
+    margin: 0;
   }
+
+  html { scroll-behavior: smooth; }
+  button, a, input, select { letter-spacing: 0; }
+}
+
+@utility shadow-soft { box-shadow: var(--shadow-soft); }
+
+@utility motif-border {
+  background-image: radial-gradient(circle, color-mix(in oklab, var(--primary) 25%, transparent) 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
