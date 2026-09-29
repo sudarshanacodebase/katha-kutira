@@ -11,4 +11,4 @@
 - [x] Add a short written story to each catalogue item
 - [x] Connect text-to-speech narration to every story player
 - [x] Add dummy Play Store and App Store links to the hero
-- [ ] Verify narration, story reading views, and store links in preview
+- [x] Verify narration, story reading views, and store links in preview
