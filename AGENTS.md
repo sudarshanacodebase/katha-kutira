@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep story catalogue content in `src/lib/stories.ts` as reusable structured data so listing and detail views remain consistent.
