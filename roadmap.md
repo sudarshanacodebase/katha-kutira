@@ -12,3 +12,5 @@
 - [x] Connect text-to-speech narration to every story player
 - [x] Add dummy Play Store and App Store links to the hero
 - [x] Verify narration, story reading views, and store links in preview
+- [ ] Add English, Kannada, and Hindi website language selection on home and story pages
+- [ ] Verify translated pages on desktop and mobile
