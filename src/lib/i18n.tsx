@@ -54,6 +54,7 @@ const en = {
   narrating: "Narrating now", pause: "Pause story", resume: "Resume story", closePlayer: "Close player",
   back: "Back to stories", coverFor: "Cover art for", narratedBy: "Narrated by", playStory: "Play story", stop: "Stop",
   favStory: "Favourite story", characters: "Meet the characters", readAlong: "Read along", more: "More stories for you",
+  categories: ["Timeless animal wisdom", "Tales passed down", "Wonder-filled legends", "Wit in the royal court", "Clever southern tales", "Stories of compassion", "Every corner, a voice", "Gentle tales for night", "Joy, light and tradition", "Wild and wonderful"],
 };
 type Dict = typeof en;
 
@@ -104,6 +105,7 @@ const kn: Dict = {
   narrating: "ಈಗ ನಿರೂಪಿಸಲಾಗುತ್ತಿದೆ", pause: "ಕಥೆ ನಿಲ್ಲಿಸಿ", resume: "ಕಥೆ ಮುಂದುವರಿಸಿ", closePlayer: "ಪ್ಲೇಯರ್ ಮುಚ್ಚಿ",
   back: "ಕಥೆಗಳಿಗೆ ಹಿಂತಿರುಗಿ", coverFor: "ಮುಖಚಿತ್ರ", narratedBy: "ನಿರೂಪಣೆ", playStory: "ಕಥೆ ಪ್ಲೇ ಮಾಡಿ", stop: "ನಿಲ್ಲಿಸಿ",
   favStory: "ಮೆಚ್ಚಿನ ಕಥೆ", characters: "ಪಾತ್ರಗಳನ್ನು ಭೇಟಿಯಾಗಿ", readAlong: "ಜೊತೆಗೆ ಓದಿ", more: "ನಿಮಗಾಗಿ ಇನ್ನಷ್ಟು ಕಥೆಗಳು",
+  categories: ["ಕಾಲಾತೀತ ಪ್ರಾಣಿಗಳ ಜ್ಞಾನ", "ತಲೆಮಾರುಗಳ ಕಥೆಗಳು", "ಅದ್ಭುತ ದಂತಕಥೆಗಳು", "ರಾಜಸಭೆಯ ಚಾತುರ್ಯ", "ದಕ್ಷಿಣದ ಚತುರ ಕಥೆಗಳು", "ಕರುಣೆಯ ಕಥೆಗಳು", "ಪ್ರತಿ ಮೂಲೆಗೂ ಒಂದು ಧ್ವನಿ", "ರಾತ್ರಿಯ ಮೃದು ಕಥೆಗಳು", "ಸಂತೋಷ, ಬೆಳಕು ಮತ್ತು ಸಂಪ್ರದಾಯ", "ಕಾಡಿನ ಅದ್ಭುತಗಳು"],
 };
 
 const hi: Dict = {
@@ -153,6 +155,7 @@ const hi: Dict = {
   narrating: "अभी सुनाई जा रही है", pause: "कहानी रोकें", resume: "कहानी जारी रखें", closePlayer: "प्लेयर बंद करें",
   back: "कहानियों पर वापस", coverFor: "कवर चित्र", narratedBy: "कथावाचक", playStory: "कहानी चलाएँ", stop: "रोकें",
   favStory: "पसंदीदा कहानी", characters: "पात्रों से मिलें", readAlong: "साथ में पढ़ें", more: "आपके लिए और कहानियाँ",
+  categories: ["सदा की पशु बुद्धि", "पीढ़ियों से चली कहानियाँ", "विस्मय भरी कथाएँ", "शाही दरबार की चतुराई", "दक्षिण की चतुर कहानियाँ", "करुणा की कहानियाँ", "हर कोने की एक आवाज़", "रात की कोमल कहानियाँ", "ख़ुशी, उजाला और परंपरा", "जंगल के अनोखे किस्से"],
 };
 
 const dicts: Record<Lang, Dict> = { en, kn, hi };
