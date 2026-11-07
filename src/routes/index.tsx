@@ -1,5 +1,5 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { ChevronDown, Heart, Menu, Pause, Play, Search, Sparkles, Volume2, X } from "lucide-react";
+import { ChevronDown, Heart, Menu, Mic, Moon, Pause, Play, Search, Sparkles, Star, Sun, Volume2, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import heroImage from "@/assets/katha-hero.jpg";
 import appHomeDesktop from "@/assets/app-home-desktop.jpg";
@@ -9,13 +9,15 @@ import { Button } from "@/components/Button";
 import { categories, stories } from "@/lib/stories";
 import { LanguageSelect, useI18n } from "@/lib/i18n";
 import { useStoryNarration } from "@/hooks/use-story-narration";
+import { ModeToggle, MoralQuest, ModesSection, VoiceSection } from "@/components/LifeGuide";
+import { useExperience } from "@/lib/experience";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
-    { title: "Katha Kutira — Every Story Has a Home" },
-    { name: "description", content: "Listen to Indian folktales, Panchatantra, regional tales and gentle bedtime stories made for curious young minds." },
-    { property: "og:title", content: "Katha Kutira — Every Story Has a Home" },
-    { property: "og:description", content: "A warm, audio-first home for India’s stories, made for children." },
+    { title: "Katha Kutira — Moral Stories & Life Lessons for Kids" },
+    { name: "description", content: "A moral life guide for children: Indian stories with simple lessons, playful quests by day and calm audio by night, in personalised voices." },
+    { property: "og:title", content: "Katha Kutira — Moral Stories & Life Lessons for Kids" },
+    { property: "og:description", content: "Little stories, big life lessons — interactive by day, audio-only by night." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
   ]}),
@@ -28,6 +30,7 @@ function Logo() {
 
 function Index() {
   const { t } = useI18n();
+  const { mode } = useExperience();
   const [menuOpen, setMenuOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [language, setLanguage] = useState("All languages");
@@ -48,31 +51,31 @@ function Index() {
         <nav className="hidden items-center gap-7 text-sm font-medium lg:flex" aria-label="Main navigation">
           <a href="#stories" className="hover:text-primary">{t.navStories}</a><a href="#categories" className="hover:text-primary">{t.navCategories}</a><a href="#journey" className="hover:text-primary">{t.navJourney}</a><a href="#parents" className="hover:text-primary">{t.navParents}</a>
         </nav>
-        <div className="hidden items-center gap-2 lg:flex"><LanguageSelect/><Button variant="ghost" size="icon" aria-label={t.searchStories} onClick={() => document.getElementById("story-search")?.focus()}><Search size={19}/></Button><Button size="sm" onClick={() => { const firstStory = stories[0]; if (firstStory) play(firstStory); }}><Play size={16} fill="currentColor"/>{t.listenNow}</Button></div>
-        <LanguageSelect className="lg:hidden"/><Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label={t.toggleNav}>{menuOpen ? <X/> : <Menu/>}</Button>
+        <div className="hidden items-center gap-2 lg:flex"><ModeToggle/><LanguageSelect/><Button variant="ghost" size="icon" aria-label={t.searchStories} onClick={() => document.getElementById("story-search")?.focus()}><Search size={19}/></Button><Button size="sm" onClick={() => { const firstStory = stories[0]; if (firstStory) play(firstStory); }}><Play size={16} fill="currentColor"/>{t.listenNow}</Button></div>
+        <div className="flex items-center gap-1 lg:hidden"><ModeToggle compact/><LanguageSelect/></div><Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label={t.toggleNav}>{menuOpen ? <X/> : <Menu/>}</Button>
       </div>
       {menuOpen && <nav className="grid gap-1 border-t border-border bg-background p-4 lg:hidden"><a href="#stories" className="rounded-md px-3 py-3" onClick={() => setMenuOpen(false)}>{t.navStories}</a><a href="#categories" className="rounded-md px-3 py-3" onClick={() => setMenuOpen(false)}>{t.navCategories}</a><a href="#journey" className="rounded-md px-3 py-3" onClick={() => setMenuOpen(false)}>{t.navJourney}</a><a href="#parents" className="rounded-md px-3 py-3" onClick={() => setMenuOpen(false)}>{t.navParents}</a></nav>}
     </header>
 
     <main>
-      <section className="relative min-h-[640px] overflow-hidden bg-foreground md:min-h-[720px]">
+      <section className="relative min-h-[640px] overflow-hidden bg-ink md:min-h-[720px]">
         <img src={heroImage} width={1536} height={1024} alt="A glowing story cottage beneath a banyan tree, with children and forest friends gathered nearby" className="absolute inset-0 h-full w-full object-cover object-[62%_center] opacity-85" fetchPriority="high"/>
-        <div className="absolute inset-0 bg-gradient-to-r from-foreground/95 via-foreground/55 to-transparent"/>
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/50 to-transparent"/>
         <div className="relative mx-auto flex min-h-[640px] max-w-7xl items-center px-5 py-20 md:min-h-[720px] lg:px-8">
-          <div className="max-w-2xl text-primary-foreground">
+          <div className="max-w-2xl text-ink-foreground">
             <p className="mb-5 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em]"><Sparkles size={17}/> {t.heroEyebrow}</p>
             <h1 className="max-w-xl text-5xl font-bold leading-[1.08] md:text-7xl">{t.heroTitle1}<br/>{t.heroTitle2}</h1>
-            <p className="mt-6 max-w-xl text-base leading-8 text-primary-foreground/90 md:text-lg">{t.heroText}</p>
+            <p className="mt-6 max-w-xl text-base leading-8 text-ink-foreground/90 md:text-lg">{t.heroText}</p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row"><Button asChild variant="light"><a href="#stories">{t.exploreStories}</a></Button><Button variant="secondary" onClick={() => { const firstStory = stories[0]; if (firstStory) play(firstStory); }}><Play size={17} fill="currentColor"/>{t.listenStory}</Button></div>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/70">{t.getApp}</span>
-              <a href="#" aria-label="Download Katha Kutira on Google Play" className="flex items-center gap-2.5 rounded-md border border-primary-foreground/25 bg-primary-foreground/10 px-4 py-2 transition hover:bg-primary-foreground/20">
-                <svg viewBox="0 0 512 512" className="h-6 w-6 text-primary-foreground" fill="currentColor" aria-hidden><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
-                <span className="text-left leading-tight"><span className="block text-[10px] uppercase tracking-wide text-primary-foreground/70">{t.getItOn}</span><span className="block text-sm font-semibold text-primary-foreground">Google Play</span></span>
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-foreground/70">{t.getApp}</span>
+              <a href="#" aria-label="Download Katha Kutira on Google Play" className="flex items-center gap-2.5 rounded-md border border-ink-foreground/25 bg-ink-foreground/10 px-4 py-2 transition hover:bg-ink-foreground/20">
+                <svg viewBox="0 0 512 512" className="h-6 w-6 text-ink-foreground" fill="currentColor" aria-hidden><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
+                <span className="text-left leading-tight"><span className="block text-[10px] uppercase tracking-wide text-ink-foreground/70">{t.getItOn}</span><span className="block text-sm font-semibold text-ink-foreground">Google Play</span></span>
               </a>
-              <a href="#" aria-label="Download Katha Kutira on the App Store" className="flex items-center gap-2.5 rounded-md border border-primary-foreground/25 bg-primary-foreground/10 px-4 py-2 transition hover:bg-primary-foreground/20">
-                <svg viewBox="0 0 384 512" className="h-6 w-6 text-primary-foreground" fill="currentColor" aria-hidden><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-                <span className="text-left leading-tight"><span className="block text-[10px] uppercase tracking-wide text-primary-foreground/70">{t.downloadOn}</span><span className="block text-sm font-semibold text-primary-foreground">App Store</span></span>
+              <a href="#" aria-label="Download Katha Kutira on the App Store" className="flex items-center gap-2.5 rounded-md border border-ink-foreground/25 bg-ink-foreground/10 px-4 py-2 transition hover:bg-ink-foreground/20">
+                <svg viewBox="0 0 384 512" className="h-6 w-6 text-ink-foreground" fill="currentColor" aria-hidden><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+                <span className="text-left leading-tight"><span className="block text-[10px] uppercase tracking-wide text-ink-foreground/70">{t.downloadOn}</span><span className="block text-sm font-semibold text-ink-foreground">App Store</span></span>
               </a>
             </div>
           </div>
@@ -87,10 +90,16 @@ function Index() {
           <label><span className="sr-only">{t.filterAge}</span><select value={age} onChange={(e) => setAge(e.target.value)} className="h-12 w-full rounded-md border border-border bg-background px-4 text-sm"><option value="All ages">{t.allAges}</option><option>5</option><option>6</option><option>7</option></select></label>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((story) => <article key={story.slug} className="group overflow-hidden rounded-lg bg-popover shadow-soft"><div className="relative aspect-[4/3] overflow-hidden"><img src={story.artwork} width={768} height={1024} loading="lazy" alt="" className="h-full w-full object-cover transition duration-500 group-hover:scale-105"/><Button variant="light" size="icon" className="absolute right-3 top-3" aria-label={`${t.favourite} ${story.title}`} onClick={() => toggleFavorite(story.slug)}><Heart size={18} fill={favorites.includes(story.slug) ? "currentColor" : "none"}/></Button><Button size="icon" className="absolute bottom-3 right-3" aria-label={`${t.play} ${story.title}`} onClick={() => play(story)}><Play size={18} fill="currentColor"/></Button></div><div className="p-5"><div className="flex items-center gap-2 text-xs font-semibold uppercase text-primary"><span>{story.category}</span><span>•</span><span>{story.duration}</span></div><h3 className="mt-2 text-xl font-bold"><Link to="/stories/$slug" params={{ slug: story.slug }} className="hover:text-primary">{story.title}</Link></h3><p className="mt-2 line-clamp-2 text-sm leading-6 text-muted-foreground">{story.description}</p><div className="mt-4 flex items-center justify-between border-t border-border pt-4 text-xs text-muted-foreground"><span>{story.ageGroup}</span><span>{story.language}</span><span>{story.narrator}</span></div></div></article>)}
+          {filtered.map((story) => <article key={story.slug} className="group overflow-hidden rounded-lg bg-popover shadow-soft"><div className="relative aspect-[4/3] overflow-hidden"><img src={story.artwork} width={768} height={1024} loading="lazy" alt="" className="h-full w-full object-cover transition duration-500 group-hover:scale-105"/>{mode === "day" && <Button variant="light" size="icon" className="absolute right-3 top-3" aria-label={`${t.favourite} ${story.title}`} onClick={() => toggleFavorite(story.slug)}><Heart size={18} fill={favorites.includes(story.slug) ? "currentColor" : "none"}/></Button>}<Button size="icon" className="absolute bottom-3 right-3" aria-label={`${t.play} ${story.title}`} onClick={() => play(story)}><Play size={18} fill="currentColor"/></Button></div><div className="p-5"><div className="flex items-center gap-2 text-xs font-semibold uppercase text-primary"><span>{story.category}</span><span>•</span><span>{story.duration}</span></div><h3 className="mt-2 text-xl font-bold"><Link to="/stories/$slug" params={{ slug: story.slug }} className="hover:text-primary">{story.title}</Link></h3><p className="mt-2 line-clamp-2 text-sm leading-6 text-muted-foreground">{story.description}</p><p className="mt-3 rounded-md bg-secondary px-3 py-2 text-xs font-semibold text-secondary-foreground">⭐ {story.moral}</p><div className="mt-4 flex items-center justify-between border-t border-border pt-4 text-xs text-muted-foreground"><span>{story.ageGroup}</span><span>{story.language}</span><span>{story.narrator}</span></div></div></article>)}
         </div>
         {filtered.length === 0 && <p className="rounded-lg bg-popover p-10 text-center text-muted-foreground">{t.noStories}</p>}
       </section>
+
+      <ModesSection/>
+
+      {mode === "day" ? <MoralQuest/> : <p className="mx-auto max-w-3xl px-5 py-10 text-center text-muted-foreground"><Moon className="mx-auto mb-3 text-primary" size={28}/>{t.nightNote}</p>}
+
+      <VoiceSection/>
 
       <section id="categories" className="bg-popover py-20"><div className="mx-auto max-w-7xl px-5 lg:px-8"><p className="text-sm font-semibold uppercase text-primary">{t.catEyebrow}</p><div className="mt-2 flex items-end justify-between gap-6"><h2 className="text-3xl font-bold md:text-5xl">{t.catTitle}</h2><span className="hidden text-sm text-muted-foreground md:block">{t.catCount}</span></div><div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-5">{categories.map(([name, , icon], index) => <Button variant="ghost" key={name} onClick={() => { setQuery(name); document.getElementById("stories")?.scrollIntoView(); }} className="flex min-h-40 h-auto flex-col items-start justify-start gap-0 whitespace-normal rounded-lg border border-border bg-background p-5 text-left transition hover:-translate-y-1 hover:border-primary"><span className="text-3xl" aria-hidden>{icon}</span><strong className="mt-6 block text-sm">{name}</strong><span className="mt-1 block text-xs font-normal leading-5 text-muted-foreground">{t.categories[index]}</span></Button>)}</div></div></section>
 
@@ -104,7 +113,7 @@ function Index() {
 
       <section className="mx-auto max-w-4xl px-5 py-24"><div className="text-center"><p className="text-sm font-semibold uppercase text-primary">{t.faqEyebrow}</p><h2 className="mt-2 text-3xl font-bold md:text-5xl">{t.faqTitle}</h2></div><div className="mt-10 divide-y divide-border border-y border-border">{[[t.q1,t.a1],[t.q2,t.a2],[t.q3,t.a3],[t.q4,t.a4]].map(([q,a]) => <details key={q} className="group py-5"><summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">{q}<ChevronDown className="shrink-0 transition group-open:rotate-180" size={20}/></summary><p className="max-w-2xl pt-3 text-sm leading-6 text-muted-foreground">{a}</p></details>)}</div></section>
 
-      <section className="mx-5 mb-20 rounded-lg bg-foreground px-6 py-14 text-center text-primary-foreground lg:mx-auto lg:max-w-7xl"><p className="text-sm font-semibold uppercase text-secondary">{t.newsEyebrow}</p><h2 className="mt-3 text-3xl font-bold md:text-5xl">{t.newsTitle}</h2><p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-primary-foreground/70">{t.newsText}</p><form className="mx-auto mt-7 grid max-w-lg gap-2 sm:grid-cols-[1fr_auto]" onSubmit={(e) => e.preventDefault()}><label><span className="sr-only">{t.email}</span><input type="email" required placeholder={t.email} className="h-12 w-full rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-5 outline-none placeholder:text-primary-foreground/55 focus:ring-2 focus:ring-secondary"/></label><Button variant="light" type="submit">{t.join}</Button></form></section>
+      <section className="mx-5 mb-20 rounded-lg bg-ink px-6 py-14 text-center text-ink-foreground lg:mx-auto lg:max-w-7xl"><p className="text-sm font-semibold uppercase text-secondary">{t.newsEyebrow}</p><h2 className="mt-3 text-3xl font-bold md:text-5xl">{t.newsTitle}</h2><p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-ink-foreground/70">{t.newsText}</p><form className="mx-auto mt-7 grid max-w-lg gap-2 sm:grid-cols-[1fr_auto]" onSubmit={(e) => e.preventDefault()}><label><span className="sr-only">{t.email}</span><input type="email" required placeholder={t.email} className="h-12 w-full rounded-full border border-ink-foreground/20 bg-ink-foreground/10 px-5 outline-none placeholder:text-ink-foreground/55 focus:ring-2 focus:ring-secondary"/></label><Button variant="light" type="submit">{t.join}</Button></form></section>
     </main>
 
     <footer className="border-t border-border bg-popover"><div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-[1.5fr_repeat(3,1fr)] lg:px-8"><div><Logo/><p className="mt-4 max-w-xs text-sm leading-6 text-muted-foreground">{t.footerText}</p></div>{[[t.fDiscover,t.navStories,t.navCategories,t.fLanguages],["Katha Kutira",t.fAbout,t.fStorytellers,t.fContact],[t.fFamilies,t.fParents,t.fPrivacy,t.fTerms]].map(([heading,...links]) => <div key={heading}><h3 className="text-sm font-bold">{heading}</h3><ul className="mt-4 space-y-3 text-sm text-muted-foreground">{links.map((link) => <li key={link}><a href="#stories" className="hover:text-primary">{link}</a></li>)}</ul></div>)}</div><div className="border-t border-border px-5 py-5 text-center text-xs text-muted-foreground">{t.copyright}</div></footer>
