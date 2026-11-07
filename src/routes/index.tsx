@@ -61,16 +61,16 @@ function Index() {
       <section className="relative overflow-hidden bg-background">
         <div aria-hidden className="absolute -left-24 -top-24 h-80 w-80 rounded-full bg-secondary/60 blur-3xl"/>
         <div aria-hidden className="absolute -right-24 bottom-0 h-96 w-96 rounded-full bg-primary/20 blur-3xl"/>
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-14 md:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-14 md:py-20 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
           <div>
             <p className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-secondary-foreground"><Sparkles size={15}/> {t.heroEyebrow}</p>
-            <h1 className="mt-6 text-5xl font-bold leading-[1.05] md:text-7xl">{t.heroTitle1}<br/><span className="text-primary">{t.heroTitle2}</span></h1>
-            <p className="mt-6 max-w-xl text-base leading-8 text-muted-foreground md:text-lg">{t.heroText}</p>
-            <ul className="mt-8 grid gap-3 sm:grid-cols-3">
-              {[["⭐", t.heroPillar1, "bg-secondary text-secondary-foreground"], ["🎙️", t.heroPillar2, "bg-primary text-primary-foreground"], ["☀️🌙", t.heroPillar3, "bg-accent text-accent-foreground"]].map(([icon, label, cls]) => <li key={label} className={`flex items-center gap-2 rounded-2xl px-4 py-3 text-sm font-bold shadow-soft ${cls}`}><span className="text-xl" aria-hidden>{icon}</span>{label}</li>)}
+            <h1 className="mt-6 text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl xl:text-7xl">{t.heroTitle1}<br/><span className="text-primary">{t.heroTitle2}</span></h1>
+            <p className="mt-5 max-w-lg text-base leading-7 text-muted-foreground md:text-lg">{t.heroText}</p>
+            <ul className="mt-7 flex flex-wrap gap-2">
+              {[["⭐", t.heroPillar1, "bg-secondary text-secondary-foreground"], ["🎙️", t.heroPillar2, "bg-primary text-primary-foreground"], ["☀️🌙", t.heroPillar3, "bg-accent text-accent-foreground"]].map(([icon, label, cls]) => <li key={label} className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold ${cls}`}><span className="text-base" aria-hidden>{icon}</span>{label}</li>)}
             </ul>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row"><Button asChild><a href="#stories">{t.exploreStories}</a></Button><Button variant="secondary" onClick={() => { const firstStory = stories[0]; if (firstStory) play(firstStory); }}><Play size={17} fill="currentColor"/>{t.listenStory}</Button></div>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row"><Button asChild><a href="#stories">{t.exploreStories}</a></Button><Button variant="secondary" onClick={() => { const firstStory = stories[0]; if (firstStory) play(firstStory); }}><Play size={17} fill="currentColor"/>{t.listenStory}</Button></div>
+            <div className="mt-8 flex flex-wrap items-center gap-3 border-t border-border pt-6">
               <span className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">{t.getApp}</span>
               <a href="#" aria-label="Download Katha Kutira on Google Play" className="flex items-center gap-2.5 rounded-md border border-border bg-popover px-4 py-2 transition hover:border-primary">
                 <svg viewBox="0 0 512 512" className="h-6 w-6 text-foreground" fill="currentColor" aria-hidden><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
@@ -83,8 +83,8 @@ function Index() {
             </div>
 
           </div>
-          <div className="relative mx-auto w-full max-w-lg">
-            <img src={heroImage} width={1536} height={1024} alt="Children and forest friends listening to a story outside a glowing cottage" className="aspect-[4/5] w-full rounded-[2rem] border-8 border-popover object-cover object-[62%_center] shadow-soft" fetchPriority="high"/>
+          <div className="relative mx-auto w-full max-w-2xl">
+            <img src={heroImage} width={1536} height={1024} alt="Children and forest friends listening to a story outside a glowing cottage" className="aspect-[4/5] w-full rounded-[2rem] lg:aspect-[5/6] border-8 border-popover object-cover object-[62%_center] shadow-soft" fetchPriority="high"/>
             <div className="absolute -left-4 top-8 max-w-[15rem] rotate-[-3deg] rounded-2xl bg-popover p-4 shadow-soft md:-left-10"><p className="text-xs font-bold uppercase text-primary">{t.moralLabel}</p><p className="mt-1 text-sm font-semibold">⭐ {stories[0]?.moral}</p></div>
             <div className="absolute -right-3 bottom-10 rotate-[3deg] rounded-2xl bg-ink p-4 text-ink-foreground shadow-soft md:-right-8"><p className="flex items-center gap-2 text-sm font-bold"><Moon size={16}/>{t.nightTitle}</p></div>
           </div>
