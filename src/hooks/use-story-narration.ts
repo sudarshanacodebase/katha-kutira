@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import type { Story } from "@/lib/stories";
+import { useExperience, voicePresets } from "@/lib/experience";
 
 /**
  * Shared text-to-speech narration. Every story player uses this hook so the
@@ -7,6 +8,7 @@ import type { Story } from "@/lib/stories";
  * story.storyText source.
  */
 export function useStoryNarration() {
+  const { voice } = useExperience();
   const [activeStory, setActiveStory] = useState<Story | null>(null);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -23,8 +25,9 @@ export function useStoryNarration() {
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(story.storyText);
     utterance.lang = story.language === "Hindi" ? "hi-IN" : "en-IN";
-    utterance.rate = 0.88;
-    utterance.pitch = 1.02;
+    const preset = voicePresets.find((v) => v.id === voice) ?? voicePresets[0]!;
+    utterance.rate = preset.rate;
+    utterance.pitch = preset.pitch;
     const finish = () => {
       setActiveStory(null);
       setIsPaused(false);
@@ -34,7 +37,7 @@ export function useStoryNarration() {
     setActiveStory(story);
     setIsPaused(false);
     window.speechSynthesis.speak(utterance);
-  }, []);
+  }, [voice]);
 
   const togglePause = useCallback(() => {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
