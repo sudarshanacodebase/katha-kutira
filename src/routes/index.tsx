@@ -58,26 +58,35 @@ function Index() {
     </header>
 
     <main>
-      <section className="relative min-h-[640px] overflow-hidden bg-ink md:min-h-[720px]">
-        <img src={heroImage} width={1536} height={1024} alt="A glowing story cottage beneath a banyan tree, with children and forest friends gathered nearby" className="absolute inset-0 h-full w-full object-cover object-[62%_center] opacity-85" fetchPriority="high"/>
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/50 to-transparent"/>
-        <div className="relative mx-auto flex min-h-[640px] max-w-7xl items-center px-5 py-20 md:min-h-[720px] lg:px-8">
-          <div className="max-w-2xl text-ink-foreground">
-            <p className="mb-5 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em]"><Sparkles size={17}/> {t.heroEyebrow}</p>
-            <h1 className="max-w-xl text-5xl font-bold leading-[1.08] md:text-7xl">{t.heroTitle1}<br/>{t.heroTitle2}</h1>
-            <p className="mt-6 max-w-xl text-base leading-8 text-ink-foreground/90 md:text-lg">{t.heroText}</p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row"><Button asChild variant="light" className="bg-ink-foreground text-ink hover:bg-secondary"><a href="#stories">{t.exploreStories}</a></Button><Button variant="secondary" onClick={() => { const firstStory = stories[0]; if (firstStory) play(firstStory); }}><Play size={17} fill="currentColor"/>{t.listenStory}</Button></div>
+      <section className="relative overflow-hidden bg-background">
+        <div aria-hidden className="absolute -left-24 -top-24 h-80 w-80 rounded-full bg-secondary/60 blur-3xl"/>
+        <div aria-hidden className="absolute -right-24 bottom-0 h-96 w-96 rounded-full bg-primary/20 blur-3xl"/>
+        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-14 md:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
+          <div>
+            <p className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-secondary-foreground"><Sparkles size={15}/> {t.heroEyebrow}</p>
+            <h1 className="mt-6 text-5xl font-bold leading-[1.05] md:text-7xl">{t.heroTitle1}<br/><span className="text-primary">{t.heroTitle2}</span></h1>
+            <p className="mt-6 max-w-xl text-base leading-8 text-muted-foreground md:text-lg">{t.heroText}</p>
+            <ul className="mt-8 grid gap-3 sm:grid-cols-3">
+              {[["⭐", t.heroPillar1, "bg-secondary text-secondary-foreground"], ["🎙️", t.heroPillar2, "bg-primary text-primary-foreground"], ["☀️🌙", t.heroPillar3, "bg-accent text-accent-foreground"]].map(([icon, label, cls]) => <li key={label} className={`flex items-center gap-2 rounded-2xl px-4 py-3 text-sm font-bold shadow-soft ${cls}`}><span className="text-xl" aria-hidden>{icon}</span>{label}</li>)}
+            </ul>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row"><Button asChild><a href="#stories">{t.exploreStories}</a></Button><Button variant="secondary" onClick={() => { const firstStory = stories[0]; if (firstStory) play(firstStory); }}><Play size={17} fill="currentColor"/>{t.listenStory}</Button></div>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-foreground/70">{t.getApp}</span>
-              <a href="#" aria-label="Download Katha Kutira on Google Play" className="flex items-center gap-2.5 rounded-md border border-ink-foreground/25 bg-ink-foreground/10 px-4 py-2 transition hover:bg-ink-foreground/20">
-                <svg viewBox="0 0 512 512" className="h-6 w-6 text-ink-foreground" fill="currentColor" aria-hidden><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
-                <span className="text-left leading-tight"><span className="block text-[10px] uppercase tracking-wide text-ink-foreground/70">{t.getItOn}</span><span className="block text-sm font-semibold text-ink-foreground">Google Play</span></span>
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">{t.getApp}</span>
+              <a href="#" aria-label="Download Katha Kutira on Google Play" className="flex items-center gap-2.5 rounded-md border border-border bg-popover px-4 py-2 transition hover:border-primary">
+                <svg viewBox="0 0 512 512" className="h-6 w-6 text-foreground" fill="currentColor" aria-hidden><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
+                <span className="text-left leading-tight"><span className="block text-[10px] uppercase tracking-wide text-muted-foreground">{t.getItOn}</span><span className="block text-sm font-semibold text-foreground">Google Play</span></span>
               </a>
-              <a href="#" aria-label="Download Katha Kutira on the App Store" className="flex items-center gap-2.5 rounded-md border border-ink-foreground/25 bg-ink-foreground/10 px-4 py-2 transition hover:bg-ink-foreground/20">
-                <svg viewBox="0 0 384 512" className="h-6 w-6 text-ink-foreground" fill="currentColor" aria-hidden><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-                <span className="text-left leading-tight"><span className="block text-[10px] uppercase tracking-wide text-ink-foreground/70">{t.downloadOn}</span><span className="block text-sm font-semibold text-ink-foreground">App Store</span></span>
+              <a href="#" aria-label="Download Katha Kutira on the App Store" className="flex items-center gap-2.5 rounded-md border border-border bg-popover px-4 py-2 transition hover:border-primary">
+                <svg viewBox="0 0 384 512" className="h-6 w-6 text-foreground" fill="currentColor" aria-hidden><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+                <span className="text-left leading-tight"><span className="block text-[10px] uppercase tracking-wide text-muted-foreground">{t.downloadOn}</span><span className="block text-sm font-semibold text-foreground">App Store</span></span>
               </a>
             </div>
+
+          </div>
+          <div className="relative mx-auto w-full max-w-lg">
+            <img src={heroImage} width={1536} height={1024} alt="Children and forest friends listening to a story outside a glowing cottage" className="aspect-[4/5] w-full rounded-[2rem] border-8 border-popover object-cover object-[62%_center] shadow-soft" fetchPriority="high"/>
+            <div className="absolute -left-4 top-8 max-w-[15rem] rotate-[-3deg] rounded-2xl bg-popover p-4 shadow-soft md:-left-10"><p className="text-xs font-bold uppercase text-primary">{t.moralLabel}</p><p className="mt-1 text-sm font-semibold">⭐ {stories[0]?.moral}</p></div>
+            <div className="absolute -right-3 bottom-10 rotate-[3deg] rounded-2xl bg-ink p-4 text-ink-foreground shadow-soft md:-right-8"><p className="flex items-center gap-2 text-sm font-bold"><Moon size={16}/>{t.nightTitle}</p></div>
           </div>
         </div>
       </section>

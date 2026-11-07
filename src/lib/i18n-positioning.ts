@@ -1,5 +1,6 @@
 // Moral life-guide positioning copy. Merged over the base dictionaries in i18n.tsx.
 const en = {
+  heroPillar1: "A moral in every story", heroPillar2: "Narrated in voices they love", heroPillar3: "Play by day, rest by night",
   heroEyebrow: "A moral life guide for growing hearts", heroTitle1: "Little Stories.", heroTitle2: "Big Life Lessons.",
   heroText: "Katha Kutira turns India’s timeless tales into a gentle life guide — honesty, kindness, courage and sharing — told in voices your child loves.",
   exploreStories: "Explore life lessons", listenStory: "Hear a story",
@@ -37,6 +38,7 @@ const en = {
 type P = typeof en;
 
 const kn: P = {
+  heroPillar1: "ಪ್ರತಿ ಕಥೆಯಲ್ಲೂ ನೀತಿ", heroPillar2: "ಇಷ್ಟದ ಧ್ವನಿಯಲ್ಲಿ ಕಥನ", heroPillar3: "ಹಗಲು ಆಟ, ರಾತ್ರಿ ವಿಶ್ರಾಂತಿ",
   heroEyebrow: "ಬೆಳೆಯುವ ಹೃದಯಗಳಿಗೆ ನೈತಿಕ ಜೀವನ ಮಾರ್ಗದರ್ಶಿ", heroTitle1: "ಚಿಕ್ಕ ಕಥೆಗಳು.", heroTitle2: "ದೊಡ್ಡ ಜೀವನ ಪಾಠಗಳು.",
   heroText: "ಕಥಾ ಕುಟೀರ ಭಾರತದ ಕಾಲಾತೀತ ಕಥೆಗಳನ್ನು ಸೌಮ್ಯ ಜೀವನ ಮಾರ್ಗದರ್ಶಿಯಾಗಿ ಮಾಡುತ್ತದೆ — ಪ್ರಾಮಾಣಿಕತೆ, ದಯೆ, ಧೈರ್ಯ ಮತ್ತು ಹಂಚಿಕೆ — ನಿಮ್ಮ ಮಗು ಇಷ್ಟಪಡುವ ಧ್ವನಿಗಳಲ್ಲಿ.",
   exploreStories: "ಜೀವನ ಪಾಠಗಳನ್ನು ನೋಡಿ", listenStory: "ಕಥೆ ಕೇಳಿ",
@@ -73,6 +75,7 @@ const kn: P = {
 };
 
 const hi: P = {
+  heroPillar1: "हर कहानी में एक सीख", heroPillar2: "पसंदीदा आवाज़ों में", heroPillar3: "दिन में खेल, रात में आराम",
   heroEyebrow: "बढ़ते दिलों के लिए नैतिक जीवन मार्गदर्शिका", heroTitle1: "छोटी कहानियाँ.", heroTitle2: "बड़े जीवन पाठ.",
   heroText: "कथा कुटीर भारत की सदाबहार कहानियों को एक कोमल जीवन मार्गदर्शिका बनाता है — ईमानदारी, दया, साहस और बाँटना — उन आवाज़ों में जो आपके बच्चे को प्यारी हैं।",
   exploreStories: "जीवन पाठ देखें", listenStory: "कहानी सुनें",
