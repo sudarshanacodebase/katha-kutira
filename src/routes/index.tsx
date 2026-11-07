@@ -58,7 +58,7 @@ function Index() {
     </header>
 
     <main>
-      <section className="relative overflow-hidden bg-background">
+      <section className="relative overflow-hidden">
         <div aria-hidden className="absolute -left-24 -top-24 h-80 w-80 rounded-full bg-secondary/60 blur-3xl"/>
         <div aria-hidden className="absolute -right-24 bottom-0 h-96 w-96 rounded-full bg-primary/20 blur-3xl"/>
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-14 md:py-20 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
