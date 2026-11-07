@@ -1,5 +1,5 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { ChevronDown, Heart, Menu, Mic, Moon, Pause, Play, Search, Sparkles, Star, Sun, Volume2, X } from "lucide-react";
+import { ChevronDown, Heart, Menu, Moon, Pause, Play, Search, Sparkles, Volume2, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import heroImage from "@/assets/katha-hero.jpg";
 import appHomeDesktop from "@/assets/app-home-desktop.jpg";
