@@ -66,7 +66,7 @@ function Index() {
             <p className="mb-5 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em]"><Sparkles size={17}/> {t.heroEyebrow}</p>
             <h1 className="max-w-xl text-5xl font-bold leading-[1.08] md:text-7xl">{t.heroTitle1}<br/>{t.heroTitle2}</h1>
             <p className="mt-6 max-w-xl text-base leading-8 text-ink-foreground/90 md:text-lg">{t.heroText}</p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row"><Button asChild variant="light"><a href="#stories">{t.exploreStories}</a></Button><Button variant="secondary" onClick={() => { const firstStory = stories[0]; if (firstStory) play(firstStory); }}><Play size={17} fill="currentColor"/>{t.listenStory}</Button></div>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row"><Button asChild variant="light" className="bg-ink-foreground text-ink hover:bg-secondary"><a href="#stories">{t.exploreStories}</a></Button><Button variant="secondary" onClick={() => { const firstStory = stories[0]; if (firstStory) play(firstStory); }}><Play size={17} fill="currentColor"/>{t.listenStory}</Button></div>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <span className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-foreground/70">{t.getApp}</span>
               <a href="#" aria-label="Download Katha Kutira on Google Play" className="flex items-center gap-2.5 rounded-md border border-ink-foreground/25 bg-ink-foreground/10 px-4 py-2 transition hover:bg-ink-foreground/20">
