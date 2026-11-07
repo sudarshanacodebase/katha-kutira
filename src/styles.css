@@ -169,6 +169,30 @@
 
 @utility shadow-soft { box-shadow: var(--shadow-soft); }
 
+/* Soft sky & clouds + storybook paper with faint doodles */
+@utility storybook-bg {
+  background-color: var(--background);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.32 0 0 0 0 0.2 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' fill='none' stroke='%23c99a6b' stroke-opacity='0.28' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M40 52l4 9 9 1-7 6 2 9-8-5-8 5 2-9-7-6 9-1z'/%3E%3Cpath d='M250 70a18 18 0 1 0 14 28 14 14 0 1 1-14-28z'/%3E%3Cpath d='M150 190c18-22 40-22 50 0-18 10-36 10-50 0zM150 190l50 0'/%3E%3Ccircle cx='70' cy='250' r='2.5'/%3E%3Ccircle cx='280' cy='230' r='2'/%3E%3Cpath d='M190 40v8M186 44h8M100 140v6M97 143h6M260 290v8M256 294h8'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 22% 7% at 12% 9%, color-mix(in oklab, white 85%, transparent), transparent 70%),
+    radial-gradient(ellipse 14% 6% at 17% 7%, color-mix(in oklab, white 80%, transparent), transparent 70%),
+    radial-gradient(ellipse 24% 7% at 82% 14%, color-mix(in oklab, white 85%, transparent), transparent 70%),
+    radial-gradient(ellipse 15% 6% at 76% 12%, color-mix(in oklab, white 80%, transparent), transparent 70%),
+    radial-gradient(circle at 92% 4%, color-mix(in oklab, var(--sun) 55%, transparent), transparent 18%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primary) 22%, var(--background)) 0%, var(--background) 1400px);
+  background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 220px 220px, 320px 320px, 100% 1400px, 100% 1400px, 100% 1400px, 100% 1400px, 100% 1400px, 100% 100%;
+}
+
+.dark .storybook-bg {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' fill='none' stroke='%23fff6c8' stroke-opacity='0.22' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M40 52l4 9 9 1-7 6 2 9-8-5-8 5 2-9-7-6 9-1z'/%3E%3Cpath d='M250 70a18 18 0 1 0 14 28 14 14 0 1 1-14-28z'/%3E%3Ccircle cx='70' cy='250' r='2.5'/%3E%3Ccircle cx='280' cy='230' r='2'/%3E%3Cpath d='M190 40v8M186 44h8M100 140v6M97 143h6M260 290v8M256 294h8'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, color-mix(in oklab, var(--primary) 18%, var(--background)), var(--background) 1400px);
+  background-repeat: repeat, no-repeat;
+  background-size: 320px 320px, 100% 100%;
+}
+
 @utility motif-border {
   background-image: radial-gradient(circle, color-mix(in oklab, var(--primary) 25%, transparent) 1px, transparent 1px);
   background-size: 12px 12px;

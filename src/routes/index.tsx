@@ -44,7 +44,7 @@ function Index() {
 
   const toggleFavorite = (slug: string) => setFavorites((items) => items.includes(slug) ? items.filter((item) => item !== slug) : [...items, slug]);
 
-  return <div className="min-h-screen overflow-x-hidden bg-background pb-24 text-foreground">
+  return <div className="min-h-screen overflow-x-hidden storybook-bg pb-24 text-foreground">
     <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
       <div className="mx-auto grid h-18 max-w-7xl grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-3 px-5 lg:flex lg:justify-between lg:px-8">
         <Logo />
