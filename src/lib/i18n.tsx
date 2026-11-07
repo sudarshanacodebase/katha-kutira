@@ -1,3 +1,4 @@
+import { positioning } from "@/lib/i18n-positioning";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
 export type Lang = "en" | "kn" | "hi";
@@ -161,7 +162,9 @@ const hi: Dict = {
 const dicts: Record<Lang, Dict> = { en, kn, hi };
 const KEY = "katha-lang";
 
-const I18nContext = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: Dict }>({ lang: "en", setLang: () => {}, t: en });
+type FullDict = Dict & (typeof positioning)["en"];
+const full = (l: Lang): FullDict => ({ ...dicts[l], ...positioning[l] });
+const I18nContext = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: FullDict }>({ lang: "en", setLang: () => {}, t: full("en") });
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("en");
@@ -171,7 +174,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   }, []);
   useEffect(() => { document.documentElement.lang = lang; }, [lang]);
   const setLang = (l: Lang) => { setLangState(l); localStorage.setItem(KEY, l); };
-  return <I18nContext.Provider value={{ lang, setLang, t: dicts[lang] }}>{children}</I18nContext.Provider>;
+  return <I18nContext.Provider value={{ lang, setLang, t: full(lang) }}>{children}</I18nContext.Provider>;
 }
 
 export const useI18n = () => useContext(I18nContext);

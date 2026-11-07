@@ -13,6 +13,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { I18nProvider } from "@/lib/i18n";
+import { ExperienceProvider } from "@/lib/experience";
 
 function NotFoundComponent() {
   return (
@@ -80,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Katha Kutira" },
-      { name: "description", content: "A home for Indian stories, built for children and made for listening." },
+      { name: "description", content: "Moral stories that guide children through life — play and learn by day, calm audio by night." },
       { name: "author", content: "Katha Kutira" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -121,10 +122,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <I18nProvider>
+      <I18nProvider><ExperienceProvider>
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
-      </I18nProvider>
+      </ExperienceProvider></I18nProvider>
     </QueryClientProvider>
   );
 }
